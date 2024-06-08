@@ -15,5 +15,5 @@ public class NhanVienRoleRequest {
 
     private UUID nhanvien_id;
     private Long role_id;
-    private String name;
+    private String name;///hieudan
 }
