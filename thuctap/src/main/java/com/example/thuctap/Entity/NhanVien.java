@@ -48,7 +48,7 @@ public class NhanVien {
     @NotNull(message = "mật khẩu không được để trống")
     @Size(min = 1, message = "mật khẩu không được để trống")
     private String matkhau;
-    private String role;
+
     private Integer trangthai;
 
     @Transient
@@ -63,6 +63,9 @@ public class NhanVien {
     @JoinColumn(name = "thongtin_nv_id", referencedColumnName = "id")
     private ThongTinCaNhan thongTinCaNhan;
 
+    @OneToMany(mappedBy = "nhanVien", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<NhanVienRole> nhanVienRoles;
 
     @OneToMany(mappedBy = "nhanvien", cascade = CascadeType.ALL)
     @JsonIgnore
@@ -84,11 +87,5 @@ public class NhanVien {
         this.matkhau = matkhau;
     }
 
-    public String getRole() {
-        return role;
-    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 }

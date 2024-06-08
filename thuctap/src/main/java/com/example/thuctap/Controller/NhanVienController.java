@@ -80,7 +80,6 @@ public class NhanVienController {
 
         try {
             NhanVien addedNhanVien = nhanVienService.add(nhanVien);
-
             response.put("status", "success");
             response.put("message", "Thêm nhân viên thành công.");
             response.put("nhanVien", addedNhanVien);
@@ -100,18 +99,7 @@ public class NhanVienController {
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-//        // Lấy mã người dùng từ token hoặc session
-//        String currentUserId = getCurrentUserId(); // Thay thế getCurrentUserId() bằng phương thức lấy mã người dùng hiện tại
-//
-//        // Kiểm tra quyền truy cập của người dùng
-//        boolean isAuthorized = authorizationService.isUserAuthorizedToDelete(currentUserId, id);
-//
-//        // Nếu người dùng không có quyền xóa bản ghi, trả về lỗi 403 - Forbidden
-//        if (!isAuthorized) {
-//            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Bạn không có quyền xóa bản ghi này.");
-//        }
 
-        // Ngược lại, thực hiện xóa bản ghi
         if (nhanVienService.delete(id)) {
             return ResponseEntity.ok("Xóa thành công");
         } else {
@@ -119,12 +107,7 @@ public class NhanVienController {
         }
     }
 
-//    // Phương thức giả định để lấy mã người dùng hiện tại từ token hoặc session
-//    private String getCurrentUserId() {
-//        // Thực hiện logic để lấy mã người dùng từ token hoặc session
-//        // Đây chỉ là ví dụ giả định, bạn cần thay thế bằng cách lấy mã người dùng thực tế
-//        return "Nv03";
-//    }
+
 
     @PutMapping("/update-nv/{id}")
     @PreAuthorize("hasRole('ADMIN')")
